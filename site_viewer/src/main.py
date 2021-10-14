@@ -7,4 +7,4 @@ app = FastAPI()
 
 # TODO add rest api endpoints
 
-app.mount("/", StaticFiles(directory="static"), name="static")
+app.mount("/", StaticFiles(directory="static/site-viewer"), name="static")

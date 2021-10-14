@@ -1,8 +1,7 @@
-FROM ubuntu:latest
+FROM node:16
 
-RUN apt-get upgrade
-RUN apt-get update
-RUN apt-get install -y npm
-RUN nmp install typescript --save-dev
+WORKDIR /input
 
-CMD ["npx", "tsc"]
+RUN npm install -g --unsafe-perm @vue/cli
+
+CMD ["./build-dev.sh"]
