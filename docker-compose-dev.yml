@@ -12,20 +12,10 @@ services:
     volumes:
       - ./site_viewer:/usr/src/site_viewer:ro
       - ./cert:/usr/src/cert
-      - frontend:/usr/src/site_viewer/static:ro
     depends_on:
       - db
-      - frontend_builder
     ports:
       - "8443:8443"
-
-  frontend_builder:
-    build:
-      context: frontend/
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ./frontend:/input:ro
-      - frontend:/output
 
 volumes:
   frontend:
