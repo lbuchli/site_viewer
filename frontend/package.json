@@ -4,15 +4,19 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --modern --dest /output/site-viewer --watch --mode developement",
+    "build": "vue-cli-service build --modern --dest /output --watch --mode developement --no-clean",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "three": "^0.133.1",
     "vue": "^3.0.0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "webxr": "^0.0.0"
   },
   "devDependencies": {
+    "@types/three": "^0.133.1",
+    "@types/webxr": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
