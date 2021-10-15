@@ -7,7 +7,18 @@
   <title>Hello WebXR!</title>
 </head>
 <body>
-<script src="/js/xr.js" type="module"></script>
-<button onclick="activateXR()">Start Hello WebXR</button>
+<script type="module">
+import { GLCanvas } from "/js/util.js";
+
+export async function showXR() {
+    let canvas = document.createElement("canvas");
+    document.body.appendChild(canvas);
+    let glcanvas = await GLCanvas.create(canvas);
+    glcanvas.addGLTF("models/bench_1.gltf");
+}
+
+window.showXR = showXR;
+</script>
+<button onclick="showXR()">Start Hello WebXR</button>
 </body>
 </html>
