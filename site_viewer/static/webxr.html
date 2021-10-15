@@ -45,20 +45,20 @@
       width: 20vw;
     }
   </style>
-  <link rel="stylesheet" href="../../libs/webxr/common/common.css"/>
+  <link rel="stylesheet" href="libs/webxr/common/common.css"/>
 
   <!-- THREE.JS (3D engine): -->
-  <script src="../../libs/threejs/v95/three.js"></script>
+  <script src="libs/threejs/v95/three.js"></script>
 
   <!-- Stuffs from WebXR polyfill - see https://github.com/mozilla/webxr-polyfill -->
-  <script src="../../libs/webxr/stats.js"></script>
-  <script type="module" src="../../libs/webxr/polyfill/XRPolyfill.js"></script>
-  <script nomodule src="../../libs/webxr/dist/webxr-polyfill.js"></script>
-  <script src="../../libs/webxr/common/common.js"></script>
+  <script src="libs/webxr/stats.js"></script>
+  <script type="module" src="libs/webxr/polyfill/XRPolyfill.js"></script>
+  <script nomodule src="libs/webxr/dist/webxr-polyfill.js"></script>
+  <script src="libs/webxr/common/common.js"></script>
 
   <!-- JEELIZ AR and its helper: -->
-  <script src="../../dist/jeelizAR.js"></script>
-  <script src="../../helpers/JeelizWebXRHelper.js"></script>
+  <script src="dist/jeelizAR.js"></script>
+  <script src="helpers/JeelizWebXRHelper.js"></script>
 </head>
 <body>
 <div id="target" />
@@ -96,7 +96,7 @@
   const _threeDebugMaterial=new THREE.MeshNormalMaterial();
   var _threeFont=false;
   const threeFontLoader = new THREE.FontLoader();
-  threeFontLoader.load( '../../libs/threejs/v95/helvetiker_regular.typeface.json', function ( font ) {
+  threeFontLoader.load( 'libs/threejs/v95/helvetiker_regular.typeface.json', function ( font ) {
     _threeFont=font;
   } );;
   const _threeGeometries={};
@@ -109,10 +109,10 @@
       var self = this;
       JeelizWebXRHelper.init({
         DOMCanvasParent: document.body,
-        neuralNet: '../../neuralNets/basic4Light.json',
-        nDetections: 5,
+        neuralNet: './neuralNets/basic4.json',
+        nDetections: 10,
         visionDoneCallback: self.handleVisionDone.bind(self),
-        isDebugRender: false
+        isDebugRender: true
       });
     }
 
