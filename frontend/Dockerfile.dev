@@ -1,7 +1,0 @@
-FROM node:16
-
-WORKDIR /input
-
-RUN npm install -g --unsafe-perm @vue/cli
-
-CMD ["./build-dev.sh"]
