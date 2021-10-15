@@ -3,9 +3,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 import os
 
-username = "postgres"
-password = ""
-db_name = "db"
+username = os.environ['POSTGRES_USER']
+password = os.environ['POSTGRES_PASSWORD']
+db_name = os.environ['POSTGRES_DB']
 
 SQLALCHEMY_DATABASE_URL = f"postgresql://{username}:{password}@db/{db_name}"
 
