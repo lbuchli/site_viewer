@@ -11,7 +11,6 @@ class GLCanvas {
     this.hitTestSource = hitTestSource;
     this.scene = new THREE.Scene();
     this.gltfloader = new GLTFLoader();
-    this.reference = new THREE.Matrix4();
     this.drawers = [];
 
     this.renderer = new THREE.WebGLRenderer({
@@ -62,10 +61,11 @@ class GLCanvas {
     return new GLCanvas(canvas, session, referenceSpace, viewerSpace, hitTestSource);
   }
 
-  addGLTF(path, transform = new THREE.Matrix4()) {
+  addGLTF(path, scale, pos = new THREE.Vector3()) {
     this.gltfloader.load(path, (gltf) => {
       let object = gltf.scene;
-      object.matrix = transform; // TODO multiply with reference
+      object.position.set(pos.x, pos.y, pos.z);
+      object.scale.multiplyScalar(scale);
       this.scene.add(object);
       console.log("Add");
     })
@@ -77,9 +77,10 @@ class GLCanvas {
     this.scene.add(light);
   }
 
-  selectReference(iconpath, refcallback) {
+  selectReference(iconpath, scale, refcallback) {
     this.gltfloader.load(iconpath, (gltf) => {
       let cursor = gltf.scene;
+      cursor.scale.multiplyScalar(scale);
       cursor.visible = false;
       this.scene.add(cursor);
 
@@ -97,7 +98,7 @@ class GLCanvas {
       let selected = false;
       this.session.addEventListener("select", (event) => {
           if (cursor && !selected) {
-            refcallback(cursor.matrix);
+            refcallback(cursor.position);
             this.scene.remove(cursor);
             selected = true;
 

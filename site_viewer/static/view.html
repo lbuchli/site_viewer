@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Site Previewer</title>
+</head>
+<body>
+<script type="module">
+import { GLCanvas } from "/js/util.js";
+
+export async function showXR() {
+    let canvas = document.createElement("canvas");
+    document.body.appendChild(canvas);
+    let glcanvas = await GLCanvas.create(canvas);
+    glcanvas.addLight();
+    glcanvas.selectReference("models/flat_marker.gltf", .1, (pos) => {
+        glcanvas.addGLTF("models/bench_1.gltf", .5, pos);
+    });
+    glcanvas.draw();
+}
+
+window.showXR = showXR;
+</script>
+<script src="/js/xr.js" type="module"></script>
+<button onclick="showXR()">Start Hello WebXR</button>
+
+<script src="/js/interactiveStars.js" type="module"></script>
+<script src="https://kit.fontawesome.com/e5e42300a8.js" crossorigin="anonymous"></script>
+<div class="rating">
+  <i class="rating__star far fa-star"></i>
+  <i class="rating__star far fa-star"></i>
+  <i class="rating__star far fa-star"></i>
+  <i class="rating__star far fa-star"></i>
+  <i class="rating__star far fa-star"></i>
+</div>
+</body>
+</html>
