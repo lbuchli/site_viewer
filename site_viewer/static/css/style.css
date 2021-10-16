@@ -9,6 +9,8 @@ h1 {
 p {
     font-family: Bahnschrift, Arial;
     color: white;
+    text-align: center;
+    margin-bottom: 4px;
 }
 
 .rating {
@@ -81,7 +83,7 @@ html{
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
-    height: 26px;
+    height: 32px;
     width: 318px;
 }
 .toggle_radio > * {
@@ -96,8 +98,8 @@ html{
     color: rgba(255,255,255,.9);
     display: block;
     width: 100px;
-    height: 20px;
-    margin: 3px 3px;
+    height: 27px;
+    margin: 6px 3px;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
@@ -112,7 +114,7 @@ html{
     /*display: none;*/
     /*background: red;*/
     width: 100px;
-    height: 20px;
+    height: 27px;
     position: absolute;
     top: 3px;
     -webkit-border-radius: 50px;
@@ -138,8 +140,6 @@ html{
     left: 215px;
 }
 
-
-                                                       /* CSS */
 .button-19 {
    background-color: #62bec1;
    border: solid transparent;
