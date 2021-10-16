@@ -21,5 +21,15 @@ class Site(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     qr_relative = Column(String)
+    model_id = Column(Integer, ForeignKey('model.id'), nullable=False)
+
+    model = relationship('Model', back_populates='site')
+
+class Model(Base):
+    __tablename__ = "model"
+
+    id = Column(String, primary_key=True, index=True)
     model = Column(BLOB)
     title = Column(String)
+
+    site = relationship('Site', back_populates='model')
