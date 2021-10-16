@@ -14,7 +14,11 @@ export async function showXR() {
     let canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
     let glcanvas = await GLCanvas.create(canvas);
-    glcanvas.addGLTF("models/bench_1.gltf");
+    glcanvas.addLight();
+    glcanvas.selectReference("models/marker.gltf", (matrix) => {
+        glcanvas.addGLTF("models/bench_1.gltf", matrix);
+    });
+    glcanvas.draw();
 }
 
 window.showXR = showXR;

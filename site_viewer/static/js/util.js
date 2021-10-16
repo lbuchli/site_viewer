@@ -31,21 +31,18 @@ class GLCanvas {
     });
 
     let baseDrawF = (time, frame) => {
-        // Queue up the next draw request.
-        session.requestAnimationFrame(this.draw);
-
-        // Bind the graphics framebuffer to the baseLayer's framebuffer
+      // Bind the graphics framebuffer to the baseLayer's framebuffer
         this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, this.session.renderState.baseLayer.framebuffer)
 
         // Retrieve the pose of the device.
         // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
-        const pose = frame.getViewerPose(referenceSpace);
+        const pose = frame.getViewerPose(this.referenceSpace);
         if (pose) {
             // In mobile AR, we only have one view.
             const view = pose.views[0];
 
-            const viewport = session.renderState.baseLayer.getViewport(view);
-            renderer.setSize(viewport.width, viewport.height)
+            const viewport = this.session.renderState.baseLayer.getViewport(view);
+            this.renderer.setSize(viewport.width, viewport.height)
 
             // Use the view's transform matrix and projection matrix to configure the THREE.camera.
             this.camera.matrix.fromArray(view.transform.matrix)
@@ -53,6 +50,7 @@ class GLCanvas {
             this.camera.updateMatrixWorld(true);
         }
     }
+    this.drawers.push(baseDrawF);
   }
 
   static async create(canvas) {
@@ -68,21 +66,27 @@ class GLCanvas {
     this.gltfloader.load(path, (gltf) => {
       let object = gltf.scene;
       object.matrix = transform; // TODO multiply with reference
-      object.visible = false;
       this.scene.add(object);
+      console.log("Add");
     })
   }
 
+  addLight(position = new THREE.Vector3(0, 0, 0), strength = 3) {
+    const light = new THREE.AmbientLight(0xffffff, strength);
+    light.position.set(position.x, position.y, position.z);
+    this.scene.add(light);
+  }
+
   selectReference(iconpath, refcallback) {
-    gltfloader.load(iconpath, (gltf) => {
+    this.gltfloader.load(iconpath, (gltf) => {
       let cursor = gltf.scene;
       cursor.visible = false;
-      scene.add(cursor);
+      this.scene.add(cursor);
 
       let drawf = (time, frame) => {
-        const hitTestResults = frame.getHitTestResults(hitTestSource);
+        const hitTestResults = frame.getHitTestResults(this.hitTestSource);
         if (hitTestResults.length > 0 && cursor) {
-            const hitPose = hitTestResults[0].getPose(referenceSpace);
+          const hitPose = hitTestResults[0].getPose(this.referenceSpace);
             cursor.visible = true;
             cursor.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
             cursor.updateMatrixWorld(true);
@@ -95,18 +99,26 @@ class GLCanvas {
           if (cursor && !selected) {
             refcallback(cursor.matrix);
             this.scene.remove(cursor);
-            this.drawers.remove(drawf);
             selected = true;
+
+            // remove from drawers
+            const index = this.drawers.indexOf(drawf);
+            if (index > -1) {
+                this.drawers.splice(index, 1);
+            }
           }
       });
     })
   }
 
   draw(time, frame) {
+    // Queue up the next draw request.
+    this.session.requestAnimationFrame((t, f) => this.draw(t, f));
+
     this.drawers.forEach((drawf) => {
       drawf(time, frame);
     });
-    renderer.render(this.scene, this.camera);
+    this.renderer.render(this.scene, this.camera);
   }
 }
 
