@@ -4,7 +4,7 @@ from fastapi import FastAPI, APIRouter
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
-import site_viewer.src.api.site as Site
+import api.site as Site
 app = FastAPI()
 
 origins = [
