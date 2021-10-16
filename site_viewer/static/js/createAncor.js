@@ -14,7 +14,7 @@ export async function showXR() {
             let objposc = new THREE.Vector3(objpos.x, objpos.y, objpos.z);
             let relpos = objposc.add(qrposc.multiplyScalar(-1));
             console.log(relpos);
-            postSite(relpos);
+            postSite(relpos, "models/bench_1.gltf");
             glcanvas.addGLTF("models/bench_1.gltf", .5, objpos);
         })
     });
