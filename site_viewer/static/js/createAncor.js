@@ -8,7 +8,7 @@ export async function showXR() {
     document.body.appendChild(canvas);
     let glcanvas = await GLCanvas.create(canvas);
     glcanvas.addLight();
-    glcanvas.selectReference("models/flat_marker.gltf", .1, (qrpos) => {
+    glcanvas.selectReference("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", .8, (qrpos) => {
         glcanvas.selectReference("models/bench_1.gltf", .5, (objpos) => {
             let qrposc = new THREE.Vector3(qrpos.x, qrpos.y, qrpos.z);
             let objposc = new THREE.Vector3(objpos.x, objpos.y, objpos.z);

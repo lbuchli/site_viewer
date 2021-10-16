@@ -7,6 +7,8 @@ export function getSite(siteId) {
     let url = "/api/site/" + siteId
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false); // false for synchronous request
+    xmlHttp.setRequestHeader('Content-Type', 'application/json')
+    xmlHttp.send(null);
     return JSON.parse(xmlHttp.responseText);
 }
 
