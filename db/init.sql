@@ -2,8 +2,8 @@ CREATE DATABASE siteviewer;
 
 \c siteviewer
 
-create table IF NOT EXISTS site (
+create table site (
   id SERIAL PRIMARY KEY,
   qr_relative varchar(255),
-  model BYTEA,
+  model varchar(255),
 );
