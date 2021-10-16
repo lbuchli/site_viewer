@@ -4,7 +4,7 @@ from fastapi import FastAPI, APIRouter
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
-import site_viewer.src.api.site
+import site_viewer.src.api.site as Site
 app = FastAPI()
 
 origins = [
@@ -22,4 +22,4 @@ app.add_middleware(
 
 app.mount("/", StaticFiles(directory="static"), name="static")
 
-app.include_router(site_viewer.src.api.site.router)
+app.include_router(Site.router)
