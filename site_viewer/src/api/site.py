@@ -21,7 +21,7 @@ def get_db():
 def get_site(siteId: int, db: Session = Depends(get_db)):
     return db.query(database.Site).filter(database.Site.id == siteId).first()
 
-@router.post('', response_model=SiteRequest)
+@router.post('/', response_model=SiteRequest)
 def post_site(site: SiteBase, db: Session = Depends(get_db)):
     db_site = database.Site(model=site.model, qr_relative=site.qr_relative)
     db.add(db_site)
