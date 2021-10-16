@@ -7,7 +7,7 @@ import src.api.site as site
 app = FastAPI()
 
 origins = [
-    "http://localhost:5000"
+    "*"
 ]
 
 app.add_middleware(

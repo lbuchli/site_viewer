@@ -1,23 +1,19 @@
-const endpoint = "xdxd"
-
-function getModels (url) {
-    const siteId = getParams(url);
-    const out = JSON.parse(httpGet(siteId));
-    const title = out.title;
-    const qrReference = ou
-
-}
-
-function getParams (url) {
+export function idGET(url) {
     const urlParams = new URLSearchParams(url);
     return urlParams.get('id');
 }
 
-function httpGet(siteId)
-{
-    let constUrl = endpoint + "api/site/" + siteId
+export function getSite(siteId) {
+    let url = "/api/site/" + siteId
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
+    xmlHttp.open("GET", url, false); // false for synchronous request
+    return xmlHttp.responseText;
+}
+
+export function postSite(pos, model) {
+    let url = "/api/site/"
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", url, false); // false for synchronous request
+    xmlHttp.send({'qr_relative': pos, 'model': model});
     return xmlHttp.responseText;
 }
