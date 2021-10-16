@@ -23,7 +23,7 @@ def get_site(siteId: int, db: Session = Depends(get_db)):
 
 @router.post('', response_model=SiteRequest)
 def post_site(site: SiteBase, db: Session = Depends(get_db)):
-    db_site = database.Site(model=site.model, qr_relative=site.qr_relative, title=site.title)
+    db_site = database.Site(model=site.model, qr_relative=site.qr_relative)
     db.add(db_site)
     db.commit()
     db.refresh(db_site)

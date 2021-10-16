@@ -1,0 +1,30 @@
+services:
+
+  db:
+    build: db/
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+  site_viewer:
+    build:
+      context: site_viewer/
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./site_viewer:/usr/src/site_viewer:ro
+      - ./cert:/usr/src/cert
+    depends_on:
+      - db
+    ports:
+      - "8443:8443"
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
