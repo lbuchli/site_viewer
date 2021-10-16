@@ -1,3 +1,9 @@
+h1 {
+    font-weight: bold;
+    color: #fff;
+    font-size: 32px;
+}
+
 .rating {
     position: relative;
     width: 180px;
@@ -30,6 +36,150 @@
     transition: filter linear .3s;
 }
 
-.rating__star:hover {
+    .rating__star:hover {
     filter: drop-shadow(1px 1px 4px gold);
 }
+
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+*{
+    margin:0px;
+    padding:0px;
+}
+html{
+    background: #497dd0;
+}
+.wrapper {
+    margin: 25px 0;
+    padding: 5px;
+}
+.toggle_radio{
+    position: relative;
+    background: rgba(255,255,255,.1);
+    margin: 4px auto;
+    overflow: hidden;
+    padding: 0 !important;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    height: 26px;
+    width: 318px;
+}
+.toggle_radio > * {
+    float: left;
+}
+.toggle_radio input[type=radio]{
+    display: none;
+    /*position: fixed;*/
+}
+.toggle_radio label{
+    font: 90%/1.618 "Source Sans Pro";
+    color: rgba(255,255,255,.9);
+    display: block;
+    width: 100px;
+    height: 20px;
+    margin: 3px 3px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1;
+    /*background: rgba(0,0,0,.1);*/
+    text-align: center;
+    /*margin: 0 2px;*/
+    /*background: blue;*/ /*make it blue*/
+}
+.toggle_option_slider{
+    /*display: none;*/
+    /*background: red;*/
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    top: 3px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+#first_toggle:checked ~ .toggle_option_slider{
+    background: rgba(255,255,255,.3);
+    left: 3px;
+}
+#second_toggle:checked ~ .toggle_option_slider{
+    background: rgba(255,255,255,.3);
+    left: 109px;
+}
+#third_toggle:checked ~ .toggle_option_slider{
+    background: rgba(255,255,255,.3);
+    left: 215px;
+}
+
+
+                                                       /* CSS */
+.button-19 {
+   background-color: #1899D6;
+   border: solid transparent;
+   border-radius: 16px;
+   border-width: 0 0 4px;
+   box-sizing: border-box;
+   color: #FFFFFF;
+   cursor: pointer;
+   display: inline-block;
+   font-family: din-round,sans-serif;
+   font-size: 15px;
+   font-weight: 700;
+   letter-spacing: .8px;
+   line-height: 20px;
+   margin: 0;
+   outline: none;
+   overflow: visible;
+   padding: 13px 16px;
+   text-align: center;
+   text-transform: uppercase;
+   touch-action: manipulation;
+   transform: translateZ(0);
+   transition: filter .2s;
+   user-select: none;
+   -webkit-user-select: none;
+   vertical-align: middle;
+   white-space: nowrap;
+   width: 100%;
+}
+
+.button-19:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.button-19:focus {
+    user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+
+.button-19:disabled {
+    cursor: auto;
+}
+
