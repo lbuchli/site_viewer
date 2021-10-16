@@ -9,22 +9,7 @@
 </head>
 <body>
 <h1 style="text-align:center">Site Previewer :)</h1>
-<script type="module">
-    import {GLCanvas} from "/js/util.js";
-
-    export async function showXR() {
-        let canvas = document.createElement("canvas");
-        document.body.appendChild(canvas);
-        let glcanvas = await GLCanvas.create(canvas);
-        glcanvas.addLight();
-        glcanvas.selectReference("models/flat_marker.gltf", .1, (pos) => {
-            glcanvas.addGLTF("models/bench_1.gltf", .5, pos);
-        });
-        glcanvas.draw();
-    }
-
-    window.showXR = showXR;
-</script>
+<script src="js/viewProject.js" type="module"></script>
 <script src="/js/xr.js" type="module"></script>
 <script src="/js/interactiveStars.js" type="module"></script>
 <script src="https://kit.fontawesome.com/e5e42300a8.js" crossorigin="anonymous"></script>
