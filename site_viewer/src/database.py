@@ -21,5 +21,5 @@ class Site(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     qr_relative = Column(String)
-    model = Column(BLOB)
+    model = Column(String)
     title = Column(String)

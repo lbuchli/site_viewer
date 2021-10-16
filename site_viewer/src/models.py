@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 class SiteBase(BaseModel):
     qr_relative: str
-    model: bytes
+    model: str
     title: str
     class Config:
         orm_mode = True
