@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Integer, String, ForeignKey, Column, Float, BLOB
+from sqlalchemy import create_engine, Integer, String, ForeignKey, Column, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 import os
@@ -29,7 +29,7 @@ class Model(Base):
     __tablename__ = "model"
 
     id = Column(String, primary_key=True, index=True)
-    model = Column(BLOB)
+    model = Column(String)
     title = Column(String)
 
     site = relationship('Site', back_populates='model')

@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 class ModelBase(BaseModel):
     qr_relative: str
-    model: bytes
+    model: str
 
 class SiteBase(BaseModel):
     model: ModelBase
